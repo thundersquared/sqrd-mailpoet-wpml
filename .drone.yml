@@ -1,0 +1,28 @@
+kind: pipeline
+name: default
+
+steps:
+  - name: build
+    image: node:lts-alpine
+    commands:
+      - yarn
+      - yarn package
+    when:
+      event:
+        - push
+        - pull_request
+  - name: notify
+    image: appleboy/drone-telegram
+    settings:
+      token:
+        from_secret: TELEGRAM_TOKEN
+      to:
+        from_secret: TELEGRAM_TO
+      document:
+        - dist/sqrd-mailpoet-wpml-*.zip
+      message: >
+        {{#success build.status}}
+          {{repo.name}} build #{{build.number}} succeeded. Good job.
+        {{else}}
+          {{repo.name}} build #{{build.number}} failed. Fix me please.
+        {{/success}}
