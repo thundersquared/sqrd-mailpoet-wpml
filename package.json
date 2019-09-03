@@ -1,8 +1,8 @@
 {
   "name": "sqrd-mailpoet-wpml",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": {},
-  "description": "MailPoet WPML fixture.",
+  "description": "MailPoet WPML fixture implementing some filters.",
   "author": "thundersquared",
   "license": "MIT",
   "scripts": {
