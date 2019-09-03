@@ -31,6 +31,9 @@ steps:
     settings:
       api_key:
         from_secret: GITHUB_TOKEN
-      files: dist/*
+      files:
+        - dist/sqrd-mailpoet-wpml-*.zip
+      checksum:
+        - md5
     when:
       event: tag
