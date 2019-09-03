@@ -26,3 +26,11 @@ steps:
         {{else}}
           {{repo.name}} build #{{build.number}} failed. Fix me please.
         {{/success}}
+  - name: publish
+    image: plugins/github-release
+    settings:
+      api_key:
+        from_secret: github_token
+      files: dist/*
+    when:
+      event: tag
